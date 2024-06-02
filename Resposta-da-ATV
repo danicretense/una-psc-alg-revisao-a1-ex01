@@ -1,0 +1,136 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String nome, p1 = "", p2 = "", p3 = "", p4 = "";
+        String q1 = "Seu cartão de vacina está em dia?";
+        String q2 = "Teve algum dos sintomas recentemente?(dor de cabeça, febre, náusea, dor articular, gripe)";
+        String q3 = "Teve contato com pessoas com sintomas gripais nos últimos dias";
+        String q4 = "Está retornando de viagem realizada no exterior?";
+        int idade;
+        int rp1, rp2, rp3, rp4 = 0;
+        int contagem = 0;
+        int tentativas = 3;
+        int nTentativas = 0;
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Qual seu nome? ");
+        nome = scan.nextLine();
+
+        System.out.println("Qual sua idade?");
+        idade = scan.nextInt();
+        scan.nextLine();
+
+        // Pergunta 1
+        while (nTentativas < tentativas) {
+            System.out.println(q1);
+            p1 = scan.nextLine();
+            if (p1.equalsIgnoreCase("nao")) {
+                rp1 = 10;
+                contagem += rp1;
+                break;
+            } else if (p1.equalsIgnoreCase("sim")) {
+                rp1 = 0;
+                contagem += rp1;
+                break;
+            } else {
+                System.out.println("Opção inválida!");
+                nTentativas++;
+                if (nTentativas >= tentativas) {
+                    System.out.println("Não foi possível realizar o diagnóstico.\nGentileza procurar ajuda médica caso apareça algum sintoma");
+                    return;
+                }
+            }
+        }
+
+        nTentativas = 0; // Resetando o contador de tentativas para a próxima pergunta
+
+        // Pergunta 2
+        while (nTentativas < tentativas) {
+            System.out.println(q2);
+            p2 = scan.nextLine();
+            if (p2.equalsIgnoreCase("sim")) {
+                rp2 = 30;
+                contagem += rp2;
+                break;
+            } else if (p2.equalsIgnoreCase("nao")) {
+                rp2 = 0;
+                contagem += rp2;
+                break;
+            } else {
+                System.out.println("Opção inválida!");
+                nTentativas++;
+                if (nTentativas >= tentativas) {
+                    System.out.println("Não foi possível realizar o diagnóstico.\nGentileza procurar ajuda médica caso apareça algum sintoma");
+                    return;
+                }
+            }
+        }
+
+        nTentativas = 0; // Resetando o contador de tentativas para a próxima pergunta
+
+        // Pergunta 3
+        while (nTentativas < tentativas) {
+            System.out.println(q3);
+            p3 = scan.nextLine();
+            if (p3.equalsIgnoreCase("sim")) {
+                rp3 = 30;
+                contagem += rp3;
+                break;
+            } else if (p3.equalsIgnoreCase("nao")) {
+                rp3 = 0;
+                contagem += rp3;
+                break;
+            } else {
+                System.out.println("Opção inválida!");
+                nTentativas++;
+                if (nTentativas >= tentativas) {
+                    System.out.println("Não foi possível realizar o diagnóstico.\nGentileza procurar ajuda médica caso apareça algum sintoma");
+                    return;
+                }
+            }
+        }
+
+        nTentativas = 0; // Resetando o contador de tentativas para a próxima pergunta
+
+        // Pergunta 4
+        while (nTentativas < tentativas) {
+            System.out.println(q4);
+            p4 = scan.nextLine();
+            if (p4.equalsIgnoreCase("sim")) {
+                rp4 = 30;
+                contagem += rp4;
+                System.out.println("Você ficará sob observação por 05 dias");
+                break;
+            } else if (p4.equalsIgnoreCase("nao")) {
+                rp4 = 0;
+                contagem += rp4;
+                break;
+            } else {
+                System.out.println("Opção inválida!");
+                nTentativas++;
+                if (nTentativas >= tentativas) {
+                    System.out.println("Não foi possível realizar o diagnóstico.\nGentileza procurar ajuda médica caso apareça algum sintoma");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("-----------------------");
+        System.out.println("Nome: " + nome + "\nIdade: " + idade + " anos");
+        System.out.println("/////////////////////////");
+        System.out.println(q1 + ": " + p1);
+        System.out.println(q2 + " : " + p2);
+        System.out.println(q3 + ": " + p3);
+        System.out.println(q4 + ": " + p4);
+        System.out.println("Probabilidade de infecção: " + contagem + "%");
+
+        if (contagem <= 30) {
+            System.out.println("Paciente sob observação. Caso apareça algum sintoma, gentileza buscar assistência médica.");
+        } else if (contagem <= 60) {
+            System.out.println("Paciente com risco de estar infectado. Gentileza aguardar em lockdown por 02 dias para ser acompanhado");
+        } else if (contagem >= 90) {
+            System.out.println("Paciente crítico! Gentileza aguardar em lockdown por 10 dias para ser acompanhado");
+        }
+    }
+}
